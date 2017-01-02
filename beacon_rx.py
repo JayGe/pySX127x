@@ -58,7 +58,7 @@ class LoRaRcvCont(LoRa):
         print ('RSSI ' + str(pkt_rssi))
         #print ('SNR ' + str(pkt_snr))
         print asciimsg
-        mqtt_msg = json.dumps({'station': "GI7UGV-20", 'payload': asciimsg, 'rssi': pkt_rssi, 'snr': pkt_snr})
+        mqtt_msg = json.dumps({'station': "GI7UGV-0", 'payload': asciimsg, 'rssi': pkt_rssi, 'snr': pkt_snr})
         mqtt_client.publish("loraham/message", mqtt_msg)
         self.set_mode(MODE.SLEEP)
         self.reset_ptr_rx()
