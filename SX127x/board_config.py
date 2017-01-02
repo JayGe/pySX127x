@@ -31,11 +31,15 @@ class BOARD:
         This is the Raspberry Pi board with one LED and a modtronix inAir9B
     """
     # Note that the BCOM numbering for the GPIOs is used.
-    DIO0 = 22   # RaspPi GPIO 22
-    DIO1 = 23   # RaspPi GPIO 23
-    DIO2 = 24   # RaspPi GPIO 24
-    DIO3 = 25   # RaspPi GPIO 25
-    LED  = 18   # RaspPi GPIO 18 connects to the LED on the proto shield
+    # Using with uputronics board
+    DIO0 = 16   # RaspPi GPIO 16 = wpi 27 = phys 36 (input)
+    #DIO1 = 12   # RaspPi GPIO 12 = wpi 26 = phys 16 (input)DIO5 on habhub
+    #
+    #DIO2 = 24   # RaspPi GPIO 24 = wpi 5 = phys 18 (input)
+    #DIO3 = 25   # RaspPi GPIO 25 = wpi 6 = phys 22 (input)
+    #LED  = 18   # RaspPi GPIO 18 = wpi 1 = phys 12 (output) 
+    LED  = 13   # RaspPi GPIO 23 = wpi 1 = phys 33 ( make output) 
+    #connects to the LED on the proto shield
     SWITCH = 4  # RaspPi GPIO 4 connects to a switch
 
     # The spi object is kept here
@@ -53,7 +57,8 @@ class BOARD:
         # switch
         GPIO.setup(BOARD.SWITCH, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) 
         # DIOx
-        for gpio_pin in [BOARD.DIO0, BOARD.DIO1, BOARD.DIO2, BOARD.DIO3]:
+        #for gpio_pin in [BOARD.DIO0, BOARD.DIO1, BOARD.DIO2, BOARD.DIO3]:
+        for gpio_pin in [BOARD.DIO0]:
             GPIO.setup(gpio_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         # blink 2 times to signal the board is set up
         BOARD.blink(.1, 2)
@@ -65,7 +70,7 @@ class BOARD:
         BOARD.spi.close()
 
     @staticmethod
-    def SpiDev(spi_bus=0, spi_cs=0):
+    def SpiDev(spi_bus=0, spi_cs=1):
         """ Init and return the SpiDev object
         :return: SpiDev object
         :param spi_bus: The RPi SPI bus to use: 0 or 1
@@ -88,9 +93,9 @@ class BOARD:
     @staticmethod
     def add_events(cb_dio0, cb_dio1, cb_dio2, cb_dio3, cb_dio4, cb_dio5, switch_cb=None):
         BOARD.add_event_detect(BOARD.DIO0, callback=cb_dio0)
-        BOARD.add_event_detect(BOARD.DIO1, callback=cb_dio1)
-        BOARD.add_event_detect(BOARD.DIO2, callback=cb_dio2)
-        BOARD.add_event_detect(BOARD.DIO3, callback=cb_dio3)
+        #BOARD.add_event_detect(BOARD.DIO1, callback=cb_dio1)
+        #BOARD.add_event_detect(BOARD.DIO2, callback=cb_dio2)
+        #BOARD.add_event_detect(BOARD.DIO3, callback=cb_dio3)
         # the modtronix inAir9B does not expose DIO4 and DIO5
         if switch_cb is not None:
             GPIO.add_event_detect(BOARD.SWITCH, GPIO.RISING, callback=switch_cb, bouncetime=300)
