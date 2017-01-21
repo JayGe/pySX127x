@@ -33,10 +33,9 @@ class BOARD:
     # Note that the BCOM numbering for the GPIOs is used.
     # Using with uputronics board
     DIO0 = 16   # RaspPi GPIO 16 = wpi 27 = phys 36 (input)
-    #DIO1 = 12   # RaspPi GPIO 12 = wpi 26 = phys 16 (input)DIO5 on habhub
-    #
-    #DIO2 = 24   # RaspPi GPIO 24 = wpi 5 = phys 18 (input)
-    #DIO3 = 25   # RaspPi GPIO 25 = wpi 6 = phys 22 (input)
+    DIO1 = 12   # RaspPi GPIO 12 = wpi 26 = phys 16 (input)DIO5 on habhub
+    DIO2 = 24   # RaspPi GPIO 24 = wpi 5 = phys 18 (input)
+    DIO3 = 25   # RaspPi GPIO 25 = wpi 6 = phys 22 (input)
     #LED  = 18   # RaspPi GPIO 18 = wpi 1 = phys 12 (output) 
     LED  = 13   # RaspPi GPIO 23 = wpi 1 = phys 33 ( make output) 
     #connects to the LED on the proto shield
@@ -58,7 +57,8 @@ class BOARD:
         GPIO.setup(BOARD.SWITCH, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) 
         # DIOx
         #for gpio_pin in [BOARD.DIO0, BOARD.DIO1, BOARD.DIO2, BOARD.DIO3]:
-        for gpio_pin in [BOARD.DIO0]:
+        for gpio_pin in [BOARD.DIO0, BOARD.DIO1]:
+        #for gpio_pin in [BOARD.DIO0]:
             GPIO.setup(gpio_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         # blink 2 times to signal the board is set up
         BOARD.blink(.1, 2)

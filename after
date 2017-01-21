@@ -1,0 +1,48 @@
+SX127x LoRa registers:
+ mode               SLEEP
+ freq               434.500000 MHz
+ coding_rate        CR4_5
+ bw                 BW20_8
+ spreading_factor   64 chips/symb
+ implicit_hdr_mode  ON
+ rx_payload_crc     ON
+ tx_cont_mode       OFF
+ preamble           8
+ low_data_rate_opti OFF
+ agc_auto_on        ON
+ symb_timeout       8
+ freq_hop_period    255
+ hop_channel        {'fhss_present_channel': 0, 'pll_timeout': 0, 'crc_on_payload': 0}
+ payload_length     255
+ max_payload_length 128
+ irq_flags_mask     {'cad_detected': 0, 'fhss_change_ch': 0, 'cad_done': 0, 'crc_error': 0, 'tx_done': 0, 'valid_header': 0, 'rx_timeout': 0, 'rx_done': 0}
+ irq_flags          {'cad_detected': 0, 'fhss_change_ch': 0, 'cad_done': 0, 'crc_error': 0, 'tx_done': 0, 'valid_header': 0, 'rx_timeout': 0, 'rx_done': 0}
+ rx_nb_byte         0
+ rx_header_cnt      0
+ rx_packet_cnt      0
+ pkt_snr_value      64.000000
+ pkt_rssi_value     -157
+ rssi_value         -157
+ fei                0
+ pa_select          RFO
+ max_power          10.800000 dBm
+ output_power       -4.200000 dBm
+ ocp                ON
+ ocp_trim           100.000000 mA
+ lna_gain           NOT_USED
+ lna_boost_lf       0b0
+ lna_boost_hf       0b11
+ detect_optimize    0x5
+ detection_thresh   0xc
+ sync_word          0x34
+ dio_mapping 0..5   [0, 0, 0, 0, 2, 0]
+ tcxo               XTAL
+ pa_dac             default
+ fifo_addr_ptr      0x0
+ fifo_tx_base_addr  0x80
+ fifo_rx_base_addr  0x0
+ fifo_rx_curr_addr  0x0
+ fifo_rx_byte_addr  0x0
+ status             {'signal_sync': 0, 'signal_detected': 0, 'header_info_valid': 0, 'rx_ongoing': 0, 'modem_clear': 0, 'rx_coding_rate': 0}
+ version            0x12
+
