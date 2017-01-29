@@ -59,15 +59,15 @@ class LoRaBeacon(LoRa):
         self.clear_irq_flags(TxDone=1)
         sys.stdout.flush()
         self.tx_counter += 1
-        sys.stdout.write("\rtx #%d" % self.tx_counter)
+        sys.stdout.write("\rtx #%d\n" % self.tx_counter)
         if args.single:
             print
             sys.exit(0)
-        BOARD.led_off()
-        sleep(args.wait)
-        self.write_payload([0x0f])
-        BOARD.led_on()
-        self.set_mode(MODE.TX)
+        #BOARD.led_off()
+        #sleep(args.wait)
+        #self.write_payload([0x0f])
+        #BOARD.led_on()
+        #self.set_mode(MODE.TX)
 
     def on_cad_done(self):
         print("\non_CadDone")
@@ -98,8 +98,8 @@ class LoRaBeacon(LoRa):
         while True:
             counter=counter+1
             stamp = str(counter) + ' ' + str(datetime.datetime.now())
-	    text=bytearray('GI7UGV LoRa Test PI: ' + stamp,'utf-8')
-            self.write_payload(list(text))
+	    text=bytearray('PING LoRa Test PI: ' + stamp,'utf-8')
+            self.write_payload([0xff, 0xff, 0x00, 0x00] + list(text))
             self.set_mode(MODE.TX)
             print "Beacon number: %s\n" % counter
             sleep(5)
