@@ -29,6 +29,9 @@ import sys, asyncore
 from time import time
 from SX127x.LoRa import *
 from SX127x.board_config import BOARD
+import paho.mqtt.client as paho
+import datetime
+import json
 
 BOARD.setup()
 
@@ -111,6 +114,10 @@ if __name__ == '__main__':
     server = Server('localhost', 20000)
     
     lora = LoRaSocket(verbose=False)
+    mqtt_client=paho.Client()
+    mqtt_client.connect("192.168.0.201", keepalive=60)
+    mqtt_client.loop_start()
+    mqtt_client.publish("loraham2/status", "Started loraham at {}".format(datetime.datetime.now()))
 
     print(lora)
     

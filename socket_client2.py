@@ -20,7 +20,11 @@ def sock_client():
                 sock.send(bytearray(message,'utf-8'))
 
                 data = bytearray(sock.recv(1024))
+                #data = bytearray(sock.recv(1024)).decode('ascii')
                  
+                #print ('From LoRa: ' + data)                 
+                #print (pream)                 
+                #print (data[0:4])                 
                 if data[0:4] == pream:
                   print ('From LoRa: ' + data[4:].decode('ascii'))
  
